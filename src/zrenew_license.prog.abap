@@ -84,7 +84,10 @@ IF sy-subrc <> 0.
     WITH sy-msgv1 sy-msgv2 sy-msgv3 sy-msgv4.
 ENDIF.
 
-DATA(ls_json) = VALUE ty_json( _type = '025' _name = pa_name _email = pa_email _hwkey = lv_hwkey ).
+DATA(lv_type) =  COND #( WHEN sy-sysid = 'NPL' THEN '020'
+                         WHEN sy-sysid = 'A4H' THEN '025' ).
+
+DATA(ls_json) = VALUE ty_json( _type = lv_type _name = pa_name _email = pa_email _hwkey = lv_hwkey ).
 
 DATA(lv_json_serailized) =  /ui2/cl_json=>serialize(
                               data             = ls_json
