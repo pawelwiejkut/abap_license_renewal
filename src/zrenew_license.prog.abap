@@ -157,11 +157,13 @@ SPLIT lv_row AT cl_abap_char_utilities=>cr_lf INTO TABLE DATA(lt_rows).
 
 LOOP AT lt_rows REFERENCE INTO DATA(lr_row).
 
-  APPEND lr_row->* TO lt_table.
-
   IF lr_row->* CS 'SYSTEM-NR'.
     lr_row->* = |SYSTEM-NR={ lv_systemno }|.
   ENDIF.
+
+
+  APPEND lr_row->* TO lt_table.
+
 
 ENDLOOP.
 
